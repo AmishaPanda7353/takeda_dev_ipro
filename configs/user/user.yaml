@@ -1,0 +1,117 @@
+user_config_domains:
+  deployment_url:
+    url : "http://ipro-app-service.default.svc.cluster.local:80/"
+    # url : "http://127.0.0.1:8000/"
+
+  mcd:
+    ui: True
+    skip_api_call: True
+
+    # If skip_api_call is True and skip list is None, all existing questions will skip api call.If skip_api_call is True and skip list is not None, only questions in skip list will skip api call, if the results of those questions are present already.If skip_api_call is False, all questions will go through api call.
+    skip_list: []
+    run_knowledge_base_similarity_check : False
+    execute_track2: True
+    execute_track3: False
+    # OpenAI connection parameters
+
+    save_track_output: False
+
+    connection_params:
+      # API type - Can be openai or azure
+      # api_type: "aws_claude_3_5" #"aws_claude_3" #"azure" #aws_claude_3
+      api_type: 
+        text_to_query : "aws_claude_3_5" #1
+        text_to_query_reattempt : "aws_claude_3_5" #1b
+        query_to_chart_type : "aws_claude_3_5" #2a
+        query_to_chart_code : "aws_claude_3_5" #2b
+        table_to_insight_questions : "aws_claude_3_5" #3a
+        insight_questions_to_code : "aws_claude_3_5" #3b
+        summarize_tables : "aws_claude_3_5" #3c
+        summarize_insights : "aws_claude_3_5" #3c
+        questions_to_insights : "aws_claude_3_5" #3c
+        
+      # End point of Azure OpenAI resource group
+      api_base: "https://openai-mcd.openai.azure.com/"
+      # API version. Search for microsoft/ openai docs for getting API version corresponding to the model version that you deployed in the Azure OpenAI resource group
+      api_version: "2023-03-15-preview"
+
+    user_inputs:
+      # Works only if `ui` is set as False
+      # Please add "Multiple charts:" as the prefix to the question if multiple charts are required for the question.
+      question:
+      # Works only if `ui` is set as False
+      # leave it blank if not applicable
+      additional_context:
+
+    # If table is exceeding the GPT's token limitation, below config value will be used first to take top n rows of the table.
+    # If its still exceeding, top n rows will be automatically halved till it isn't exceeding token limits.
+    table_top_rows: 1000
+
+    # Threshold above which a question will be considered a why question. Ranges from 0-1. 1 being exactly why question.
+    # If it's blank, no question will be treated as why qn.
+    why_question_threshold:
+
+    # Time (sec) to sleep before making another request
+    time_delay: 10
+
+    # Date to consider as today for prompts to GPT. If empty, today's date will be taken
+    # Provide date in YYYY-MM-DD format
+    today: "2023-04-04"
+
+    bot_response: "rule_based"
+
+    sql_debug_retry_attempts : 3
+
+    # Sentence encode model and cosine similarity threshold for identifying similar questions and columns.
+    # Number of columns per chunk - For similar questions, new columns are identified based on new word chunks in the user question.
+    # The number of such columns identified can be changed using this parameter.
+    similarity_check:
+      model: "all-MiniLM-L6-v2"
+      threshold: 100
+      num_columns_per_chunk: 10
+
+    question_classifier:
+      rag_flag : False
+      fsi_flag : False
+      rag_threshold_score : 80
+      recreate_rag_table_flag : True
+      qc_vectordb_table_name : "qc_vector_table"
+      question_classification_data_path : prod/data/questionnaires/question_classification_templates.csv
+      track0__data_path : prod/data/questionnaires/question_classification_templates.csv 
+      local_check : True
+
+    table_selection_parameters:
+
+      # table selection
+      table_selection: False #True/False
+
+      # table_selection_method: keep this as a list, if more than one model then it will give union of all the results
+      rag_flag: True
+      rag_methods: ['pgvector']
+      embedding_retrieval_methods: ['milvusdb','pgvector']
+      keywords_matching_methods: ['bm25','tfidf']
+      entity_flag: True
+      entity_extraction_methods: ['keybert']
+      embedding_dim: 768
+
+    chart_generation_type: 'local' #local #llm
+    
+
+      # column_selection_method: keep this as a list, if more than one model then it will give union of all the results
+      # note: if taking results for combined( column name + column description + table name ), keep this only: ['combined']
+      #column_selection_method: ['column_name']   #'column_name' #'column_description' # 'combined'
+      # path_to_data_dict : "/mnt/d/insights_pro_tests/Saurabh/test.json"
+
+      # parameters when using keyword based table selection
+      # table_selection_parameters_keywords:
+      #   keyword_model: ['bm25'] #'bm25' #'tfidf'  # keep this as a list, if more than one model then it will give union of all the results
+
+      # # parameters when using embeddings based table selection
+      # table_selection_parameters_embeddings:
+      #   embedding_model: sentence_transformer # openai # sentence_transformer
+      #   host: "localhost"
+      #   port: "19530"
+      #   collection_name_prefix: "my_collection"
+      #   embedding_dim: 768
+
+

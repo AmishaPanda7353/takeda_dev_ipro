@@ -1,0 +1,37 @@
+path:
+  parent: ../../
+  input_data_path: ${path.parent}/data/db
+
+  # Table names that need to be excluded
+  exclude_table_names: []
+
+  data_dictionary_path: ${path.parent}/data/data_dictionary
+
+  # provide path to the txt file containing business overview. Use it only with GPT4
+  business_overview_path: 
+
+  api_key_location: ${path.parent}/../tmp/azure_api_key_gpt4
+  output_path: ${path.parent}/data/output_folder
+  exp_name: track3_refinement
+
+
+db_params:
+  db_name: "sqlite" # sqlite or mysql
+  host: "localhost"
+  username: "root"
+  password_path: #"/mnt/c/Users/chetan.subramani/Downloads/insights_generator/password_db/password.txt"
+  sqlite_database_path: ${path.parent}/data/db/database.db
+  chunk_size: 500000 #500000 
+
+cloud_storage:
+  # Add connection parameters for DBFS. Leave platform blank for normal filestorage (Linux, Windows) and other entries will be ignored
+  # Platform of the cloud. Can be blank (for local FS) or "azure"
+  platform:
+  prefix_url:
+  DefaultEndpointsProtocol:
+  # Add path where the Accountkey is stored
+  # Add the path in local FS and not in the cloud since we don't have access to the DBFS where this is read - this is used for establishing the connection
+  # Useless if platform is set as blank
+  account_key_path:
+  AccountName:
+  EndpointSuffix:

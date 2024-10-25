@@ -1,0 +1,252 @@
+domain_config:
+  supply_chain_management:
+    text_to_query:
+      guidelines: |
+        \nGuideline 1: This data belongs to the Supply Chain Management domain.
+        \nGuideline 2: Validate data consistency across supply chain stages to ensure accurate tracking.
+        \nGuideline 3: Use precise filtering criteria specific to logistics metrics when needed.
+        \nGuideline 4: Prioritize data accuracy and completeness when merging and aggregating data from multiple supply chain stages.
+
+    followup_question_tagging:
+      guidelines:
+
+    query_to_chart_type:
+      guidelines:
+
+    query_to_chart_code:
+      guidelines:
+
+    table_to_insight_questions:
+      guidelines:
+
+    questions_to_insights:
+      guidelines:
+
+    summarize_insights:
+      guidelines:
+
+    summarize_tables:
+      guidelines:
+
+    insight_questions_to_code:
+      guidelines:
+
+  finance:
+    text_to_query:
+      guidelines: |
+        \nGuideline 1: This data belongs to the Finance domain.
+        \nGuideline 2: Use financial ratios and metrics as per the given documentation.
+    followup_question_tagging:
+      guidelines: |
+        \nGuideline 1: This data belongs to the Finance domain.
+        \nGuideline 2: Use financial ratios and metrics as per the given documentation.
+    query_to_chart_type:
+      guidelines: |
+        \nGuideline 1: This data belongs to the Finance domain.
+        \nGuideline 2: Use financial ratios and metrics as per the given documentation.
+    query_to_chart_code:
+      guidelines: |
+        \nGuideline 1: This data belongs to the Finance domain.
+        \nGuideline 2: Use financial ratios and metrics as per the given documentation.
+    table_to_insight_questions:
+      guidelines: |
+        \nGuideline 1: This data belongs to the Finance domain.
+        \nGuideline 2: Use financial ratios and metrics as per the given documentation.
+    questions_to_insights:
+      guidelines: |
+        \nGuideline 1: This data belongs to the Finance domain.
+        \nGuideline 2: Use financial ratios and metrics as per the given documentation.
+    summarize_insights:
+      guidelines: |
+        \nGuideline 1: This data belongs to the Finance domain.
+        \nGuideline 2: Use financial ratios and metrics as per the given documentation.
+    summarize_tables:
+      guidelines: |
+
+    insight_questions_to_code:
+      guidelines: |
+
+  insurance:
+    text_to_query:
+      guidelines: |
+        \nGuideline 1: This data belongs to the Insurance domain.
+        \nGuideline 2: Implement precise data retrieval strategies to differentiate between policy types and coverage details.
+    followup_question_tagging:
+      guidelines: |
+        \nGuideline 1: This data belongs to the Insurance domain.
+        \nGuideline 2: Implement precise data retrieval strategies to differentiate between policy types and coverage details.
+    query_to_chart_type:
+      guidelines: |
+        \nGuideline 1: This data belongs to the Insurance domain.
+        \nGuideline 2: Implement precise data retrieval strategies to differentiate between policy types and coverage details.
+    query_to_chart_code:
+      guidelines: |
+        \nGuideline 1: This data belongs to the Insurance domain.
+        \nGuideline 2: Implement precise data retrieval strategies to differentiate between policy types and coverage details.
+    table_to_insight_questions:
+      guidelines: |
+        \nGuideline 1: This data belongs to the Insurance domain.
+        \nGuideline 2: Implement precise data retrieval strategies to differentiate between policy types and coverage details.
+    questions_to_insights:
+      guidelines: |
+        \nGuideline 1: This data belongs to the Insurance domain.
+        \nGuideline 2: Implement precise data retrieval strategies to differentiate between policy types and coverage details.
+    summarize_insights:
+      guidelines: |
+        \nGuideline 1: This data belongs to the Insurance domain.
+        \nGuideline 2: Implement precise data retrieval strategies to differentiate between policy types and coverage details.
+    summarize_tables:
+      guidelines: |
+
+    insight_questions_to_code:
+      guidelines: |
+
+
+  it_service_management:
+    text_to_query:
+      guidelines: |
+        \nGuideline 1: This data belongs to the IT Service Management domain.
+    followup_question_tagging:
+      guidelines: |
+        \nGuideline 1: This data belongs to the IT Service Management domain.
+    query_to_chart_type:
+      guidelines: |
+        \nGuideline 1: This data belongs to the IT Service Management domain.
+    query_to_chart_code:
+      guidelines: |
+        \nGuideline 1: This data belongs to the IT Service Management domain.
+    table_to_insight_questions:
+      guidelines: |
+        \nGuideline 1: This data belongs to the IT Service Management domain.
+    questions_to_insights:
+      guidelines: |
+        \nGuideline 1: This data belongs to the IT Service Management domain.
+    summarize_insights:
+      guidelines: |
+        \nGuideline 1: This data belongs to the IT Service Management domain.
+    summarize_tables:
+      guidelines: |
+
+    insight_questions_to_code:
+      guidelines: |
+
+
+  medical_r_and_d:
+    text_to_query:
+      guidelines: |
+        \nGuideline 1: This data belongs to the Medical R & D domain.
+    followup_question_tagging:
+      guidelines: |
+        \nGuideline 1: This data belongs to the Medical R & D domain.
+    query_to_chart_type:
+      guidelines: |
+        \nGuideline 1: This data belongs to the Medical R & D domain.
+    query_to_chart_code:
+      guidelines: |
+        \nGuideline 1: This data belongs to the Medical R & D domain.
+    table_to_insight_questions:
+      guidelines: |
+        \nGuideline 1: This data belongs to the Medical R & D domain.
+    questions_to_insights:
+      guidelines: |
+        \nGuideline 1: This data belongs to the Medical R & D domain.
+    summarize_insights:
+      guidelines: |
+        \nGuideline 1: This data belongs to the Medical R & D domain.
+    summarize_tables:
+      guidelines: |
+
+    insight_questions_to_code:
+      guidelines: |
+
+
+  credit:
+    text_to_query:
+      guidelines: |
+        \nGuideline 1: This data belongs to the Credit domain.
+    followup_question_tagging:
+      guidelines: |
+        \nGuideline 1: This data belongs to the Credit domain.
+    query_to_chart_type:
+      guidelines: |
+        \nGuideline 1: This data belongs to the Credit domain.
+    query_to_chart_code:
+      guidelines: |
+        \nGuideline 1: This data belongs to the Credit domain.
+    table_to_insight_questions:
+      guidelines: |
+        \nGuideline 1: This data belongs to the Credit domain.
+    questions_to_insights:
+      guidelines: |
+        \nGuideline 1: This data belongs to the Credit domain.
+    summarize_insights:
+      guidelines: |
+        \nGuideline 1: This data belongs to the Credit domain.
+    summarize_tables:
+      guidelines: |
+
+    insight_questions_to_code:
+      guidelines: |
+
+  cost_management:
+    text_to_query:
+      guidelines: |
+        \nGuideline 1: This data belongs to the Cost Management domain.
+    followup_question_tagging:
+      guidelines: |
+        \nGuideline 1: This data belongs to the Cost Management domain.
+    query_to_chart_type:
+      guidelines: |
+        \nGuideline 1: This data belongs to the Cost Management domain.
+    query_to_chart_code:
+      guidelines: |
+        \nGuideline 1: This data belongs to the Cost Management domain.
+    table_to_insight_questions:
+      guidelines: |
+        \nGuideline 1: This data belongs to the Cost Management domain.
+    questions_to_insights:
+      guidelines: |
+        \nGuideline 1: This data belongs to the Cost Management domain.
+    summarize_insights:
+      guidelines: |
+        \nGuideline 1: This data belongs to the Cost Management domain.
+    summarize_tables:
+      guidelines: |
+
+    insight_questions_to_code:
+      guidelines: |
+
+  mcd:
+    text_to_query:
+      guidelines: |
+        \nGuideline 1: This data belongs to the Supply Chain Management domain.
+        \nGuideline 2: Validate data consistency across supply chain stages to ensure accurate tracking.
+        \nGuideline 3: Use precise filtering criteria specific to logistics metrics when needed.
+        \nGuideline 4: Prioritize data accuracy and completeness when merging and aggregating data from multiple supply chain stages.
+
+    followup_question_tagging:
+      guidelines:
+
+    query_to_chart_type:
+      guidelines:
+
+    query_to_chart_code:
+      guidelines:
+
+    table_to_insight_questions:
+      guidelines:
+
+    questions_to_insights:
+      guidelines:
+
+    summarize_insights:
+      guidelines:
+
+    summarize_tables:
+      guidelines:
+
+    insight_questions_to_code:
+      guidelines:
+
+    extract_formulas:
+      guidelines:

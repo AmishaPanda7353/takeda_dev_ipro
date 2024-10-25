@@ -1,0 +1,274 @@
+text_to_query:
+    prompts:
+      system_role: "You are a SQL developer who assists the business users."
+      static_prompt:
+        "Strictly follow the data dictionary, generate a sql query to answer the below question:
+        \n\nQuestion: '<question>'
+        \n\nData dictionary:\n<data_dictionary>"
+
+      static_prompt_similar_question:
+        "Generate a sql query for a new question based on the below sample question and query.
+        \nSample Question: '<sample_question>'
+        \n\nSample query:\n <sample_response>
+        \n\nStrictly follow the data dictionary when generating the query.
+        \nNew Question: '<question>'
+        \n\nData dictionary:\n <data_dictionary>
+        "
+
+      additional_context: "'<additional_context>'"
+
+      guidelines:
+        "\nFollow the below mentioned guidelines while generating response:
+      \n Guideline 1: Output query MUST be syntactically correct on a <sql> database.
+      \n Guideline 2: The columns used in the main SQL query should be present in SQL sub query.
+      \n Guideline 3: SQL query must have a aggregated column if GROUP BY clause is present.
+      \n Guideline 4: SQL query should strictly contain columns only that are required and present in the data dictionary.
+      \n Guideline 5: While generating new columns, understand dtype (like date time, integer, float, text, etc.) of the columns based on description and question, then use appropriate syntax.
+      \n Guideline 6: Use meaningful aliases in queries to improve readability and clarity.
+      \n Guideline 7: SQL queries should strictly contain only filters which are needed in the WHERE clause.
+      \n Guideline 8: Always consider the information provided in the question to apply filters in the SQL query.
+      \n Guideline 9: SQL query should be prefixed by <start> and suffixed by <end>.
+      \n Guideline 10: While filtering for a keyword, user may not provide the exact name, so use functions like 'LIKE operators' and, handle the case sensitivity.
+      \n Guideline 11: In case all columns from a table are needed, instead of listing out all the columns, use * operator.
+      \n Guideline 12: Only for the new or renamed columns, give the data dictionary: [{'column_name':, 'description':, 'unit_of_measurement':<use the generated query>, 'id':<Yes/No - use the data dictionary to get the ID details>}] of the resulting table prefixed by <start_dict> and suffixed by <end_dict>.
+      \n Guideline 13: Use table aliases in the SQL clauses wherever required.
+      \n Guideline 14: Consider metrics calculated based on new price if corresponding price information is not provided in the question."
+        # "\nFollow the below mentioned guidelines while generating response:
+        # \n Guideline 1: Output query MUST be syntactically correct on a <sql> database.
+        # \n Guideline 2: If SQL query has group by clause, aggregation of a column must be present.
+        # \n Guideline 3: While generating new columns, understand dtype (like date time, integer, float, text, etc.) of the columns based on description and question, then use appropriate syntax.
+        # \n Guideline 4: Give meaningful names to the output table columns.
+        # \n Guideline 5: Always consider columns used in WHERE clause under SELECT statement.
+        # \n Guideline 6: Only columns present in data dictionary MUST be considered for each table while generating sql query.
+        # \n Guideline 7: SQL query should be prefixed by <start> and suffixed by <end>.
+        # \n Guideline 8: In case all columns from a table are needed, instead of listing out all the columns, use * operator.
+        # \n Guideline 9: Only for the new or renamed columns, give the data dictionary: [{'column_name':, 'description':, 'unit_of_measurement':<use the generated query>, 'id':<Yes/No - use the data dictionary to get the ID details>}] of the resulting table prefixed by <start_dict> and suffixed by <end_dict>.
+        # \n Guideline 10: Use table aliases in the SQL clauses wherever required.
+        # \n Guideline 11: If the question asks for a metric without specifying at new_prices or current_prices, by default provide the metric at new_price"
+        # \n Guideline 9: Look for column in data and use column with table aliases in SQL clauses." #When using table aliases reference column with table aliases in SQL query."
+        #Always reference table's as tb while generating SQL query." #Always reference tablename as short name of tablename as tn while generating SQL query."
+        # Always reference table's as tb while generating SQL query.
+        # Always use table aliases in all the SQL clauses
+
+      # provide path to the txt file containing business overview. Use it only with GPT4
+      business_overview: "Following is the business overview \n
+        <business_overview>"
+
+      example_responses:
+      # example_responses: "\nFollowing are some expected questions and responses:
+
+      #                     \n Q1: 'What is the average time for unloading after arrival?'
+      #                     \n A1: 'SELECT AVG(drop_trackingarrivaltime_minus_unload_date_timediff) AS avg_unload_time_after_arrival FROM stream_data;'
+
+      #                     \n Q2: 'Display summary by carrier, how many shipments are on-time or delayed?'
+      #                     \n A2: 'SELECT carrier_name, SUM(CASE WHEN current_state = 'on_time' THEN 1 ELSE 0 END) AS on_time_shipments,SUM(CASE WHEN current_state = 'delayed' THEN 1 ELSE 0 END) AS delayed_shipments  FROM stream_data  GROUP BY carrier_name;'"
+
+followup_question_tagging:
+  prompts:
+    system_role: "You will take a user question and tag the question to one of the four categories mentioned."
+    static_prompt:
+      "We have a chat assistant that can provide 3 outputs for any user question:
+      \n 1. SQL query to generate a table that can answer the question
+      \n 2. A graph that can visualize the above table
+      \n 3. Some insights to explain the above table and answer the user question.
+      \n\nDuring a conversation with a chat assistant, the user asked the assistant a follow-up question:
+      \n '<question>'
+      \n\n Tag the above follow-up question into one of the following categories:
+      \n 'SQL related', if the followup question is related to the generated SQL query.
+      \n 'Graph related', if the followup question is related to the generated plot or graph.
+      \n 'Insights related', if the followup question is related to the generated insights.
+      \n 'Greeting', if the followup is not a question but is just a greeting or an acknowlegement (like 'Hello', 'Hi', 'Okay', 'thank you' or any such greeting message).
+      \n 'General follow-up question', in any other case.
+      "
+
+    static_prompt_similar_question:
+
+    additional_context: "'<additional_context>'"
+
+    guidelines:
+      "
+      \n Guideline 1: Your response should contain one of the above mentioned 4 categories.
+      \n Guideline 2: Do NOT give any additional text."
+
+    # provide path to the txt file containing business overview. Use it only with GPT4
+    business_overview:
+
+    example_responses:
+
+query_to_chart_type:
+  prompts:
+    system_role: "You are an analytics consultant who assists the business users."
+    static_prompt:
+      "With the given data dictionary, suggest one appropriate chart type with the axis details which can be used to answer the provided business question.
+      \n\nQuestion: '<question>'
+      \n\nData dictionary:\n<data_dictionary>"
+
+    static_prompt_multiplecharts:
+      "With the given data dictionary, suggest 2 or 3 appropriate chart types with the axis details which can be used to answer the provided business question.
+      Also suggest 2 or 3 important scalar metrics (along with their units) from the data which can be added to the report.
+      \n\nQuestion: '<question>'
+      \n\nData dictionary:\n<data_dictionary>"
+
+    additional_context:
+      "\nFollowing is the additional context to answer the question:
+      \n'<additional_context>'"
+
+    guidelines:
+      "
+      \nGuideline 1: The data frame contains ONLY the columns mentioned on the Data dictionary. Do NOT assume any other column names
+      \nGuideline 2: Assume all columns necessary to answer the question are already available in the columns list.
+      \nGuideline 3: If you encounter columns with YYYY-WW or YYYY-MM formats, add prefix 'W' or 'M' before the week or month value.
+      \nGuideline 4: Give appropriate axis labels and chart title and it should be descriptive and not be same as the column names.
+      \nGuideline 5: Use multiple traces and/or secondary axis if required
+      \nGuideline 6: Frame the answers in the form of dictionary
+      \nGuideline 7: Use variable chart_type, title, x_axis, y_axis, label, column,y_axis,description
+      \nGuideline 8: Give  variable y_axis  in  the form of list
+      \nGuideline 9: prefix the output with <start> and suffix with <end>"
+
+      # \n Guideline 4: If the chart type suggested needs outlier imputation for better visualization, give a special mention about that in addition to the chart type suggestion."
+
+    # provide path to the txt file containing business overview. Use it only with GPT4
+    business_overview:
+
+query_to_chart_code:
+  prompts:
+    system_role: "You are a plotly visualization expert who assists the business users."
+    static_prompt:
+      "Give an executable plotly code with import statement based on the provided chart type suggestion.
+      \nThe axis labels and titles mentioned in the suggestion should be incorporated in the code.
+      \n\nQuestion: '<question>'
+      \n\nChart Type Suggestion: '<additional_context>'
+      \n\nData dictionary:\n<data_dictionary>"
+
+    static_prompt_multiplecharts:
+      "Give an executable plotly code with import statement based on the provided chart type suggestions.
+      \nThe axis labels and titles mentioned in the suggestion should be incorporated in the code.
+      \nData dictionary : '<data_dictionary>'
+      \nQuestion : '<question>'
+      \nChart Type Suggestion : '<additional_context>'"
+
+    additional_context:
+
+    guidelines:
+      "
+      \nGuideline 1: The data frame 'df' contains ONLY the columns mentioned on the Data dictionary. Do NOT assume any other column names.
+      \nGuideline 2: Assume that the 'df' is already loaded to the environment and use it for making the plots and don't create sample data or lists. Do NOT apply any filters to df.
+      \nGuideline 3: If secondary axis is specified in the suggestion, use make_subplots function with plotly graph objects with proper import statements.
+      \nGuideline 4: If you encounter columns with YYYY-WW or YYYY-MM formats, add prefix 'W' or 'M' before the week or month value.
+      \nGuideline 5: Use multiple traces and/or secondary axis if required"
+
+    guidelines_multiplecharts:
+      "\nFollow the below mentioned guidelines while generating response:
+      \nGuideline 1: Give separate python codes for each chart type suggestion.
+      \nGuideline 2: Give one separate python code for the scalar metrics. Finally the metrics (with the units details) should be saved as a JSON file named 'metrics.json'.
+      \nGuideline 3: The data frame contains ONLY the columns mentioned on the Data dictionary. Do NOT assume any other column names.
+      \nGuideline 4: Do NOT apply any filters to df.
+      \nGuideline 5: If secondary axis is specified in the suggestion, use make_subplots function with plotly graph objects with proper import statements.
+      \nGuideline 6: If you encounter columns with YYYY-WW or YYYY-MM formats, add prefix 'W' or 'M' before the week or month value.
+      \nGuideline 7: Use multiple traces and/or secondary axis if required"
+    
+    business_overview:
+    
+table_to_insight_questions:
+  prompts:
+    system_role: "You are a business expert who comes up with questions to gain insights."
+    static_prompt: "Given a table that has data dictionary given below, generate two different questions to gain business insights from this table.\n\nData dictionary:\n<data_dictionary>"
+
+    additional_context:
+
+    guidelines:
+      "
+      \nGuideline 1: All the questions must contain different meaning.
+      \nGuideline 2: All questions must be prefixed with 'Question '"
+
+    business_overview:
+
+questions_to_insights:
+  prompts:
+    system_role: "You are an business expert who gives insights to a business audience."
+    static_prompt: "Given a table, give top 3 business insights by answering the following question\n\nQuestions: '<question>'\n\nTable:\n<table>"
+
+    additional_context:
+      "\nFollowing is the additional context to answer the question:
+      \n'<additional_context>'"
+
+    guidelines:
+
+    business_overview:
+      
+summarize_insights:
+  prompts:
+    system_role: "You are an expert in giving executive summaries to business audience."
+    static_prompt: "Given below text, summarize to a business audience to gain insights.\n\nText:\n<suggestion>"
+
+    additional_context:
+
+    guidelines:
+      "
+      \nGuideline 1: Use bulleted list for each points in the summary.
+      \nGuideline 2: summary should contain one or two sentences.
+      \nGuideline 3: summary should be provided based on factual data."
+
+    business_overview:
+
+summarize_tables:
+  prompts:
+    system_role: "You are an expert data summarizer, who explains summary of table data with all calculated statistical values"
+    static_prompt:
+      "Given below table, study and provide summary to the user, based on the following strategies:
+      - describe all columns statistically, including all numericals
+      - decribe any relation amongst two or more columns of the table and connect them numerically
+      - Keep the output less than three sentences
+      \n\nTable:\n<table>"
+
+    additional_context:
+
+    guidelines:
+      "
+      \nGuideline 1: Use bulleted list for each points in the summary.
+      \nGuideline 2: summary should contain one or two sentences.
+      \nGuideline 3: summary should be provided based on factual data."
+    
+    business_overview:
+
+insight_questions_to_code:
+  prompts:
+    system_role: "You are a python statistics expert who assists the business users."
+    static_prompt: "Given a pandas dataframe 'df' with data dictionary given below, give an executable python code to answer the below questions.\n\nQuestions: '<question>'\n\nData dictionary:\n<data_dictionary>"
+
+    additional_context:
+
+    guidelines:
+      "
+      \nGuideline 1: Use only the column names from the Data dictionary in the code.
+      \nGuideline 2: Comment '#----' at the end of each questions' answer in a new line.
+      \nGuideline 3: Python code should be prefixed by '<start>' and suffixed by '<end>'.
+      \nGuideline 4: Do not add filters and create new columns from existing columns in the pandas dataframe `df` if it's necessary.
+      \nGuideline 5: Each print statement in the code should have a description of the question."
+    
+    business_overview:
+
+extract_formulas:
+  prompts:
+    system_role: "You are an AI chat assistant. Your role is to extract formulas from the given business overview document."
+    static_prompt:
+      "\n\nStrictly follow the business overview to extract the formulas.
+      \n\nBusiness overview:\n<business_overview>
+      "
+
+    additional_context: "'<additional_context>'"
+
+    guidelines:
+      "\nFollow the below mentioned guidelines while generating response:
+      \n Guideline 1: Formulas can be in the form of LHS = RHS or in sentence format.
+      \n Guideline 2: If a formula has multiple LHS separated by 'or', split it into multiple formulas with each LHS and the same RHS.
+      \n Guideline 3: Return the formulas as a JSON object where keys are LHS and values are lists of unique components from the RHS.
+      \n Guideline 4: IGNORE the context or narrative text and focus only on extracting the formulas.
+      \n Guideline 5: Exclude all mathematical functions or operators like log, exponential, sum."
+
+
+    business_overview: "Following is the business overview \n<business_overview>"
+
+    example_responses: "\nExample - \n
+      Formula from context: Sales is calculated by sum(units * price).
+      Output: {{'sales': ['units', 'price'] }}"

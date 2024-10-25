@@ -1,0 +1,67 @@
+# removing trigger due to pr
+pr: none
+
+# removing trigger
+trigger:
+  branches:
+    include:
+      - testing
+  paths:
+    include:
+      - ui/react/*
+
+pool:
+  vmImage: 'ubuntu-20.04'
+
+parameters:
+  - name: ConnectedServiceName
+    type: string
+    default: supplychain-sc
+  - name: VGName
+    type: string
+    default: 'Ipro-Test'
+
+variables:
+  - group: ${{ parameters.VGName }}
+  - name: azureDevopsExtPath
+    value: $[variables.AZURE_DEVOPS_EXT_PAT]
+  - name: tfStorageKey
+    value: $[variables.TF_STORAGE_KEY]
+  - name: tfStorageAccount
+    value: $[variables.TF_STORAGE_ACCOUNT]
+
+stages:
+  - stage: build_and_deploy
+    displayName: Build And Deploy App
+
+    jobs:
+      - job: build_and_deploy
+        steps:
+          - task: NodeTool@0 # Install NodeJs
+            displayName: Installing NodeJs
+            inputs:
+              versionSource: 'spec'
+              versionSpec: '16.x'
+          - task: CmdLine@2 # Install npm and other dependencies
+            inputs:
+              script: 'npm install'
+              workingDirectory: '$(System.DefaultWorkingDirectory)/ui/react'
+            displayName: Installing npm
+          - task: CmdLine@2
+            inputs:
+              script: 'npm run build_test_env'
+              workingDirectory: '$(System.DefaultWorkingDirectory)/ui/react'
+            displayName: Building Project
+          
+          - bash: az devops configure --defaults organization=$(System.TeamFoundationCollectionUri) project=$(System.TeamProject) --use-git-aliases true
+            displayName: 'Set default Azure DevOps organization and project'
+          - bash: echo $(azureDevopsExtPath) | az devops login
+            displayName: logging in az devops
+          
+          - task: AzureCLI@1
+            displayName: 'Uploading Build files to blob'
+            inputs:
+              azureSubscription: ${{parameters.ConnectedServiceName}}
+              scriptLocation: inlineScript
+              inlineScript: |
+                az storage blob upload-batch -d '$web' -s $(System.DefaultWorkingDirectory)/ui/react/build --overwrite true --account-key $(tfStorageKey) --account-name $(tfStorageAccount)

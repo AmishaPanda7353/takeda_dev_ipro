@@ -1,0 +1,6 @@
+---
+entity_extraction_details:
+  entity_extraction_type: "keybert"
+  lemmatize: True
+  exact_match: True
+  fuzzy_match: True

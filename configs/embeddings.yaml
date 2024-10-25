@@ -1,0 +1,16 @@
+---
+embedding_details:
+  vectordb_type: pgvector
+  # host: 
+  # user:
+  # password: 
+  # database: 
+  # port: 
+  # collection_name_prefix: my_collection
+  embedding_dim: 384
+  embedding_model: sentence_transformer
+  pre_built_model : "all-MiniLM-L6-v2"
+  vector_db_table_name: "embeddings"
+  # column_selection_method: ['column_description'] #chunk
+  top_k: 10
+  

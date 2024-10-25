@@ -1,0 +1,25 @@
+{
+    "lang": {
+        "menus": {
+           "offer_recommend":"Offer Recommender",
+           "scenario_planner":"Scenario Planner"
+        },
+        "common":{
+            "App_name":"Russia Promo Engine"
+        },
+        "country_code": {
+            "code": "en-US"
+        },
+        "login":{
+            "welcome":"Welcome",
+            "email":"Email",
+            "password":"Password",
+            "Signin":"Sign In",
+            "forgot_password":"Forgot password"
+        }
+  
+       
+    }
+
+
+}

@@ -1,0 +1,16 @@
+---
+cloud_details:
+  data_names_storage:           # For getting domains of user not present in user credentials table
+    account_name: nlpdevreact   # Optional: Azure storage account name
+    storage_name: data
+
+  mcd:
+    cloud_provider: s3 #s3 #azure #local
+    domain_storage:
+      account_name: mcd-ipro #"mcd-ipro" #nlpdevreact
+      storage_name: #data  
+    reports_storage:
+      account_name: #nlpdevreact
+      storage_name: #backend
+
+

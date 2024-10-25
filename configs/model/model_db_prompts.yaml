@@ -1,0 +1,90 @@
+db_config:
+  text_to_query:
+    sqlite: &sqlite
+      guidelines:
+        "
+        \n Guideline 1: Output query MUST be syntactically correct on a SQLite database.
+        \n Guideline 2: Use SQLite-specific functions and syntax for optimal performance.
+        \n Guideline 3: Ensure transactions are used efficiently to maintain data integrity.
+        "
+    Snowflake_default: &Snowflake_default
+      guidelines:
+        "
+        \n Guideline 1: Output query MUST be syntactically correct on a Snowflake database.
+        \n Guideline 2: Utilize Snowflake-specific data types and functions for analytics.
+        "
+    postgres: &postgres
+      guidelines:
+        "
+        \n Guideline 1: Output query MUST be syntactically correct on a PostgreSQL database.
+        \n Guideline 2: Make use of PostgreSQL's advanced indexing features for performance.
+        \n Guideline 3: Utilize PostgreSQL extensions where applicable for enhanced functionality.
+        "
+    mysql: &mysql
+      guidelines:
+  
+  followup_question_tagging:
+    sqlite: 
+      guidelines:
+    mysql: 
+      guidelines:
+      
+  query_to_chart_type:
+    sqlite: 
+      guidelines: 
+    mysql: 
+      guidelines:
+
+  query_to_chart_code:
+    sqlite: 
+      guidelines:
+    mysql: 
+      guidelines: 
+
+  table_to_insight_questions:
+    sqlite: 
+      guidelines:
+    mysql: 
+      guidelines: 
+    
+  questions_to_insights:
+    sqlite: 
+      guidelines:
+    mysql: 
+      guidelines: 
+    
+  summarize_insights:
+    sqlite: 
+      guidelines: 
+    mysql: 
+      guidelines:
+    
+  summarize_tables:
+    sqlite: 
+      guidelines:
+    mysql: 
+      guidelines: 
+    
+  insight_questions_to_code:
+    sqlite: 
+      guidelines: 
+    mysql: 
+      guidelines:
+
+  extract_formulas:
+    sqlite:
+      guidelines:
+    mysql:
+      guidelines:
+
+supply_chain_management_sqlite: 
+  <<: *sqlite
+  
+mcd:
+  <<: *mysql
+
+finance:
+  <<: *Snowflake_default
+
+supply_chain_management_postgresql:
+  <<: *postgres

@@ -1,0 +1,5 @@
+---
+retriever_details:
+  retriever_type: bm25
+  column_selection_method: ['column_description']
+  top_k: 3

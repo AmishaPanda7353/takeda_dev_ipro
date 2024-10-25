@@ -1,0 +1,25 @@
+# Pull base image of python from docker hub
+FROM python:3.8.16
+
+# Create a working directory
+WORKDIR /code
+
+# Copy specific modules in insights-pro directory to code folder.
+COPY /app /code/app
+COPY /configs /code/configs
+COPY /core /code/core
+COPY /data /code/data
+COPY /deploy /code/deploy
+COPY /src /code/src
+COPY pyproject.toml /code/pyproject.toml
+COPY setup* /code/
+COPY README.md /code/
+
+# Install Insights-Pro package
+RUN pip install --no-cache-dir --upgrade -e . 
+
+# Change directory to app folder needed for fastapi application to run
+WORKDIR /code/app
+
+# Command to run uvicorn server - binds web connection from api client and then allows FastAPI to serve request
+CMD ["uvicorn", "ipro_app:app", "--host", "0.0.0.0", "--port", "80"]

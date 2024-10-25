@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ipro-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ipro-app
+  template:
+    metadata:
+      labels:
+        app: ipro-app
+    spec:
+      containers:
+      - name: ipro-app
+        image: demoacr4312.azurecr.io/ipro_app:v12
+        ports:
+        - containerPort: 80

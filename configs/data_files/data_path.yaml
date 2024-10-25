@@ -1,0 +1,75 @@
+data_config_domains:
+
+  mcd :
+    path:
+      # Path where the input data, db files, output folder (will be created in the code) are saved
+      input_data_path: ../../../data/
+
+      #Config to enable and disable the clasification and select the default classification category if needed.
+      question_classification : True
+      default_classification : 'Recommendation/Reporting'
+
+      # Table names that need to be excluded
+      mysql_exclude_table_names: []
+      athena_exclude_table_names: []
+
+      input_data_tables:
+        reporting: ['eva_store_item_report','gc_table','playbook_table','recommendation_table','snapshot_table','summary_category_table','summary_price_table','summary_item_table','summary_store_table']
+        historical: ['us_uat_gc_parquet','us_uat_pmix_parquet','us_uat_snapshot_parquet']
+
+      input_file_names:
+        reporting:
+          gc_table: gc_table.csv
+          playbook_table: playbook_table.csv
+          recommendation_table: recommendation_table.csv
+          snapshot_table: snapshot_table.csv
+          summary_category_table: summary_category_table.csv
+          summary_price_table: summary_item_table.csv
+          summary_item_table: summary_item_table.csv
+          summary_store_table: summary_store_table.csv
+          eva_store_item_report: eva_store_item_report.csv
+
+      # Path where the data dictionaries are available (one json file per one table mentioned in path.input_file_name section of this config)
+      data_dictionary_path: ../../data/data_dictionary/
+      data_dictionary_path_athena: ../../data/data_dictionary/athena/
+      entity_extraction_data_dictionary_path: ../../data/entity_extraction_data_dictionary
+      entity_extraction_data_dictionary_path_athena: ../../data/entity_extraction_data_dictionary_athena
+
+      data_dictionary_path_s3 : prod/data/data_dictionary/reporting/
+      data_dictionary_path_s3_athena : prod/data/data_dictionary/athena/
+      entity_extraction_data_dictionary_path_s3: prod/data/entity_extraction_data_dictionary_mysql/
+      entity_extraction_data_dictionary_path_s3_athena: prod/data/entity_extraction_data_dictionary_athena/
+
+      #data glossary path
+      data_glossary_path : ../../data/data_glossary/data_glossary.txt
+      data_glossary_path_athena : ../../data/data_glossary/athena/data_glossary.txt
+
+      data_glossary_path_s3 : prod/data/data_glossary/recomendation/data_glossary.txt
+      data_glossary_path_s3_athena : prod/data/data_glossary/athena/data_glossary.txt
+
+      #guidelines
+      guidelines_athena: prod/data/guideline/athena/Athena_guidelines.txt
+
+      #question_classification
+      question_classifier:
+          question_classification_data_path : prod/data/questionaire/question_classification_templates.csv
+          # prod/data/questionnaires/question_classification_templates.csv
+          track0__data_path : prod/data/questionnaires/question_classification_templates.csv
+
+      # provide path to the txt file containing business overview. Use it only with GPT4
+      business_overview_path: ../../data/data_glossary/data_glossary.txt
+      business_overview_path_athena : ../../data/data_glossary/athena/data_glossary.txt
+
+      # Path where the API key is stored. This will be added as a temporary environment variable in the code
+      api_key_location: ../../tmp/azure_api_key_gpt4
+      #post-processing based on ids
+      replace_in_query: {'mcd_store_id':'id','store_id':'id','legacy_id':'global_store_id','store_name':'id','store_address':'id','operator_name':'id'}
+      store_master: 'store_master'
+      user_master: 'user_profile'
+      # Output path where results will be saved
+      time_logging_excel_path: prod/data/time_logging.xlsx
+      output_path: ../../data/output_folder
+
+      output_path_s3: results/experiments/
+      # Experiment name. Sub folder inside output_path will be created with this name. All results of runs will be saved inside `output_path/exp_name`
+      exp_name: "session_isolation_experiment"
