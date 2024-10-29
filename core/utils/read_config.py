@@ -70,18 +70,18 @@ try:
     # print(app_db_config, "***********")
     app_database_config = app_db_config
 
-    mcd_db_config = getattr(config.database_details, config.domain_name)
+    takeda_db_config = getattr(config.database_details, config.domain_name)
 
     # _mysql_database
-    mysql_database_config = mcd_db_config.reporting_db
-    mcd_secrets = SecretManager(mysql_database_config)
-    domain_db_config = mcd_secrets.mcd_reporting_database_secret()
+    mysql_database_config = takeda_db_config.reporting_db
+    takeda_secrets = SecretManager(mysql_database_config)
+    domain_db_config = takeda_secrets.takeda_reporting_database_secret()
     config.database_details[config.domain_name]["reporting_db"].update(domain_db_config)
 
     # athena_database
-    athena_database_config = mcd_db_config.historical_db
+    athena_database_config = takeda_db_config.historical_db
     secrets = SecretManager(athena_database_config)
-    domain_db_config = secrets.mcd_historical_database_secret()
+    domain_db_config = secrets.takeda_historical_database_secret()
     domain_db_config["domain_database"] = "athena"
     config.database_details[config.domain_name]["historical_db"].update(
         domain_db_config
@@ -163,8 +163,8 @@ def model_config_generator():
     model_config._store.clear()  # removing the default values in dynaconf
     for a in list1:
         b = dict(getattr(config, a))  # getting the prompts using the track name
-        if (config.domain_name == "mcd") and (a.lower() in track_names):
-            c = getattr(config.user_config_domains.mcd.connection_params.api_type, a)
+        if (config.domain_name == "takeda") and (a.lower() in track_names):
+            c = getattr(config.user_config_domains.takeda.connection_params.api_type, a)
         else:
             c = config.llm_model_type
         param = getattr(

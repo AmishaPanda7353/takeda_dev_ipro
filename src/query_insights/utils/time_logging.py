@@ -156,7 +156,7 @@ def save_timing_info_and_merge(s3_bucket, s3_path, fs, path, file_name, cloud_pr
         s3_client = boto3.client("s3")
         file_path = f"{path}/{file_name}"
         s3_client.put_object(
-            Bucket="mcd-ipro",
+            Bucket="takeda-ipro",
             Key=file_path,
             Body=csv_data,
         )

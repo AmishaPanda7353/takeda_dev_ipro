@@ -164,11 +164,11 @@ class TextToSqlQuery:
             if SPACY_MODEL is not None:
                 # it is as same as current requested model
                 self.logger.info(f"Spacy Model {model_name} already exist. saving time by not re-loading.")
-                return 
+                return
             else:
                 # it is a new model different from loaded model
                 SPACY_MODEL = spacy.load(model_name) #spacy.load("en_core_web_lg")
-                self.logger.info(f"Spacy Model {model_name} loaded succussfully. Hypothetical case ! Developer attemtion required")  
+                self.logger.info(f"Spacy Model {model_name} loaded succussfully. Hypothetical case ! Developer attemtion required")
                 return
         else:
             # there is no spacy model loaded
@@ -176,8 +176,8 @@ class TextToSqlQuery:
             SPACY_MODEL = spacy.load(model_name)
             LOADED_SPACY_MODEL = model_name
             self.logger.info(f"Spacy Model {model_name} successfully loaded.")
-            return 
-    
+            return
+
     @timing_decorator(track_app_start=True)
     def text_to_query(
         self,
@@ -216,10 +216,10 @@ class TextToSqlQuery:
 
         """
         track1_start_time = timeit.default_timer()
-        
+
         if cloud_config.cloud_provider != "s3":
             foldercreation._individual_track_folder_creation("01_text_to_query")
-        db_details = database_config["reporting_db"] #defaulting to reporting db connection. 
+        db_details = database_config["reporting_db"] #defaulting to reporting db connection.
 
         if self.question_category == "Historical":
             # db_details = database_config["historical_db"]
@@ -479,7 +479,7 @@ class TextToSqlQuery:
             f"Time taken to run track 1: {round(track1_end_time - track1_start_time, 2)} seconds."
         )
 
-        if config.user_config_domains.mcd.save_track_output:
+        if config.user_config_domains.takeda.save_track_output:
 
             track_status = {
                 # "question_id": [self.question_id],
@@ -509,7 +509,7 @@ class TextToSqlQuery:
                     content=pd.DataFrame(track_status),
                 )
 
-        # if config.cloud_details.mcd.cloud_provider == "s3":
+        # if config.cloud_details.takeda.cloud_provider == "s3":
         #     upload_data(self.data_config.path.exp_name)
         print(f"Memory Consumption layer 3 : end of texg to query : {tracemalloc.get_traced_memory()}")
         return return_value

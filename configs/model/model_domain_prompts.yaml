@@ -216,7 +216,7 @@ domain_config:
     insight_questions_to_code:
       guidelines: |
 
-  mcd:
+  takeda:
     text_to_query:
       guidelines: |
         \nGuideline 1: This data belongs to the Supply Chain Management domain.

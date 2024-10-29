@@ -2,7 +2,7 @@ param_dict:
   text_to_query:
     openai:
       model_params:
-        engine: "mcd-insights-pro-4o" #"gpt_35_turbo" # gpt_35_turbo/gpt_test
+        engine: "takeda-insights-pro-4o" #"gpt_35_turbo" # gpt_35_turbo/gpt_test
         temperature: 0
         max_tokens: 1000
         n: 1
@@ -14,15 +14,15 @@ param_dict:
     aws_llama:
       model_params:
         engine : "meta.llama3-70b-instruct-v1:0"
-        max_gen_len: 1000   
-        top_p: 0.3  
+        max_gen_len: 1000
+        top_p: 0.3
         top_k : 10
         temperature: 0.5
         max_tries : 3
-        stop: 
+        stop:
     aws_mistral:  #aws_mistral
       model_params:
-        engine: "mistral.mistral-large-2402-v1:0" 
+        engine: "mistral.mistral-large-2402-v1:0"
         temperature: 0
         max_tokens: 3000
         top_p : 0.1
@@ -71,15 +71,15 @@ param_dict:
     aws_llama:
       model_params:
         engine : "meta.llama3-70b-instruct-v1:0"
-        max_gen_len: 1000   
-        top_p: 0.3  
+        max_gen_len: 1000
+        top_p: 0.3
         top_k : 10
         temperature: 0.5
         max_tries : 3
-        stop: 
+        stop:
     aws_mistral:  #aws_mistral
       model_params:
-        engine: "mistral.mistral-large-2402-v1:0" 
+        engine: "mistral.mistral-large-2402-v1:0"
         temperature: 0
         max_tokens: 3000
         top_p : 0.1
@@ -128,15 +128,15 @@ param_dict:
     aws_llama:
       model_params:
         engine : "meta.llama3-70b-instruct-v1:0"
-        max_gen_len: 1000   
-        top_p: 0.3  
+        max_gen_len: 1000
+        top_p: 0.3
         top_k : 10
         temperature: 0.5
         max_tries : 3
-        stop: 
+        stop:
     aws_mistral:  #aws_mistral
       model_params:
-        engine: "mistral.mistral-large-2402-v1:0" 
+        engine: "mistral.mistral-large-2402-v1:0"
         temperature: 0
         max_tokens: 3000
         top_p : 0.1
@@ -185,15 +185,15 @@ param_dict:
     aws_llama:
       model_params:
         engine : "meta.llama3-70b-instruct-v1:0"
-        max_gen_len: 1000   
-        top_p: 0.3  
+        max_gen_len: 1000
+        top_p: 0.3
         top_k : 10
         temperature: 0.5
         max_tries : 3
         stop:
     aws_mistral:  #aws_mistral
       model_params:
-        engine: "mistral.mistral-large-2402-v1:0" 
+        engine: "mistral.mistral-large-2402-v1:0"
         temperature: 0
         max_tokens: 3000
         top_p : 0.1
@@ -238,19 +238,19 @@ param_dict:
         stop:
         function: "ChatCompletion"
         timeout: 60
-        max_tries: 3     
+        max_tries: 3
     aws_llama:
       model_params:
         engine : "meta.llama3-70b-instruct-v1:0"
-        max_gen_len: 1000   
-        top_p: 0.3  
+        max_gen_len: 1000
+        top_p: 0.3
         top_k : 10
         temperature: 0.5
         max_tries : 3
         stop:
     aws_mistral:  #aws_mistral
       model_params:
-        engine: "mistral.mistral-large-2402-v1:0" 
+        engine: "mistral.mistral-large-2402-v1:0"
         temperature: 0
         max_tokens: 3000
         top_p : 0.1
@@ -300,15 +300,15 @@ param_dict:
     aws_llama:
       model_params:
         engine : "meta.llama3-70b-instruct-v1:0"
-        max_gen_len: 1000   
-        top_p: 0.3  
+        max_gen_len: 1000
+        top_p: 0.3
         top_k : 10
         temperature: 0.5
         max_tries : 3
         stop:
     aws_mistral:  #aws_mistral
       model_params:
-        engine: "mistral.mistral-large-2402-v1:0" 
+        engine: "mistral.mistral-large-2402-v1:0"
         temperature: 0
         max_tokens: 3000
         top_p : 0.1
@@ -358,15 +358,15 @@ param_dict:
     aws_llama:
       model_params:
         engine : "meta.llama3-70b-instruct-v1:0"
-        max_gen_len: 1000   
-        top_p: 0.3  
+        max_gen_len: 1000
+        top_p: 0.3
         top_k : 10
         temperature: 0.5
         max_tries : 3
         stop:
     aws_mistral:  #aws_mistral
       model_params:
-        engine: "mistral.mistral-large-2402-v1:0" 
+        engine: "mistral.mistral-large-2402-v1:0"
         temperature: 0
         max_tokens: 3000
         top_p : 0.1
@@ -415,15 +415,15 @@ param_dict:
     aws_llama:
       model_params:
         engine : "meta.llama3-70b-instruct-v1:0"
-        max_gen_len: 1000   
-        top_p: 0.3  
+        max_gen_len: 1000
+        top_p: 0.3
         top_k : 10
         temperature: 0.5
         max_tries : 3
         stop:
     aws_mistral:  #aws_mistral
       model_params:
-        engine: "mistral.mistral-large-2402-v1:0" 
+        engine: "mistral.mistral-large-2402-v1:0"
         temperature: 0
         max_tokens: 3000
         top_p : 0.1
@@ -472,14 +472,14 @@ param_dict:
     aws_llama:
       model_params:
         engine : "meta.llama3-70b-instruct-v1:0"
-        max_gen_len: 519   
-        top_p: 0.9      
+        max_gen_len: 519
+        top_p: 0.9
         temperature: 0.5
         max_tries: 3
         stop:
     aws_mistral:  #aws_mistral
       model_params:
-        engine: "mistral.mistral-large-2402-v1:0" 
+        engine: "mistral.mistral-large-2402-v1:0"
         temperature: 0
         max_tokens: 3000
         top_p : 0.1
@@ -527,7 +527,7 @@ param_dict:
         history:
     aws_mistral:  #aws_mistral
       model_params:
-        engine: "mistral.mistral-large-2402-v1:0" 
+        engine: "mistral.mistral-large-2402-v1:0"
         temperature: 0
         max_tokens: 3000
         top_p : 0.1
@@ -545,8 +545,8 @@ param_dict:
     aws_llama:
       model_params:
         engine : "meta.llama3-70b-instruct-v1:0"
-        max_gen_len: 519   
-        top_p: 0.9      
+        max_gen_len: 519
+        top_p: 0.9
         temperature: 0.5
         max_tries: 3
         stop:

@@ -22,53 +22,53 @@ db_config:
         "
     mysql: &mysql
       guidelines:
-  
+
   followup_question_tagging:
-    sqlite: 
+    sqlite:
       guidelines:
-    mysql: 
+    mysql:
       guidelines:
-      
+
   query_to_chart_type:
-    sqlite: 
-      guidelines: 
-    mysql: 
+    sqlite:
+      guidelines:
+    mysql:
       guidelines:
 
   query_to_chart_code:
-    sqlite: 
+    sqlite:
       guidelines:
-    mysql: 
-      guidelines: 
+    mysql:
+      guidelines:
 
   table_to_insight_questions:
-    sqlite: 
+    sqlite:
       guidelines:
-    mysql: 
-      guidelines: 
-    
+    mysql:
+      guidelines:
+
   questions_to_insights:
-    sqlite: 
+    sqlite:
       guidelines:
-    mysql: 
-      guidelines: 
-    
+    mysql:
+      guidelines:
+
   summarize_insights:
-    sqlite: 
-      guidelines: 
-    mysql: 
+    sqlite:
       guidelines:
-    
+    mysql:
+      guidelines:
+
   summarize_tables:
-    sqlite: 
+    sqlite:
       guidelines:
-    mysql: 
-      guidelines: 
-    
+    mysql:
+      guidelines:
+
   insight_questions_to_code:
-    sqlite: 
-      guidelines: 
-    mysql: 
+    sqlite:
+      guidelines:
+    mysql:
       guidelines:
 
   extract_formulas:
@@ -77,10 +77,10 @@ db_config:
     mysql:
       guidelines:
 
-supply_chain_management_sqlite: 
+supply_chain_management_sqlite:
   <<: *sqlite
-  
-mcd:
+
+takeda:
   <<: *mysql
 
 finance:

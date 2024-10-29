@@ -72,7 +72,7 @@ class SecretManager:
                 )
 
     # Gets DB details stores in secret manager
-    def mcd_reporting_database_secret(self):
+    def takeda_reporting_database_secret(self):
         #secret_name = self.config["secret_name"]
         db_secrets = json.loads(self.get_secret(self.secret_name))
         db_secrets["database_name"] = self.database_name
@@ -82,8 +82,8 @@ class SecretManager:
         dot_dict.domain_database = dot_dict.pop('engine')
         dot_dict.password_path = dot_dict.pop('password')
         return dot_dict
-    
-    def mcd_historical_database_secret(self):
+
+    def takeda_historical_database_secret(self):
         db_secrets = json.loads(self.get_secret(self.secret_name))
         settings = Dynaconf(settings_files=[], environments=True, load_dotenv=False)
         settings.set('MY_DICT', db_secrets)
@@ -91,7 +91,7 @@ class SecretManager:
         return dot_dict
 
     # Gets DB details stores in secret manager
-    def mcd_athena_database_secret(self):
+    def takeda_athena_database_secret(self):
         #secret_name = self.config["secret_name"]
         db_secrets = json.loads(self.get_secret(self.secret_name))
         db_secrets["database_name"] = self.database_name
@@ -132,5 +132,5 @@ class SecretManager:
 
 
 # obj = SecretManager(CONFIG)
-# a = obj.mcd_database_secret()
+# a = obj.takeda_database_secret()
 # print(a.keys())

@@ -1,6 +1,6 @@
 data_config_domains:
 
-  mcd :
+  takeda :
     path:
       # Path where the input data, db files, output folder (will be created in the code) are saved
       input_data_path: ../../../data/
@@ -63,7 +63,7 @@ data_config_domains:
       # Path where the API key is stored. This will be added as a temporary environment variable in the code
       api_key_location: ../../tmp/azure_api_key_gpt4
       #post-processing based on ids
-      replace_in_query: {'mcd_store_id':'id','store_id':'id','legacy_id':'global_store_id','store_name':'id','store_address':'id','operator_name':'id'}
+      replace_in_query: {'takeda_store_id':'id','store_id':'id','legacy_id':'global_store_id','store_name':'id','store_address':'id','operator_name':'id'}
       store_master: 'store_master'
       user_master: 'user_profile'
       # Output path where results will be saved

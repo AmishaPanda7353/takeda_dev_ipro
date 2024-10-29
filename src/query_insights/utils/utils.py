@@ -1273,7 +1273,7 @@ def save_results_as_json(
 
 def upload_data(exp):
     s3 = s3fs.S3FileSystem()
-    s3_path = f"mcd-ipro/results/experiments/{exp}"
+    s3_path = f"takeda-ipro/results/experiments/{exp}"
     local_path = f"../../data/output_folder/{exp}/"
     s3.put(local_path, s3_path, recursive=True)
 

@@ -210,7 +210,7 @@ class TextToQuery:
             # import boto3
 
             # s3 = boto3.client("s3")
-            # bucket_name = "mcd-ipro"
+            # bucket_name = "takeda-ipro"
             # file_path = f"{self.output_path}/prompt.txt"
             # buffer = BytesIO(self.model_factory.model_type.prompt.encode("utf-8"))
             # s3.upload_fileobj(buffer, bucket_name, file_path)
@@ -522,7 +522,7 @@ class TextToQuery:
         # import boto3
 
         # s3 = boto3.client("s3")
-        # bucket_name = "mcd-ipro"
+        # bucket_name = "takeda-ipro"
         # file_path_sql = f"{self.output_path}/01_text_to_query/sql_query.sql"
         # buffer = BytesIO(output_query.encode("utf-8"))
         # s3.upload_fileobj(buffer, bucket_name, file_path_sql)
@@ -577,7 +577,7 @@ class TextToQuery:
         replace_with = self.data_config.path.replace_in_query
         store_master = self.db_factory.execute_query(
             db_conn,
-            "SELECT id, user_id, legacy_id, mcd_store_id, mcd_store_name FROM "
+            "SELECT id, user_id, legacy_id, takeda_store_id, takeda_store_name FROM "
             + self.data_config.path.store_master,
         )
         user_master = self.db_factory.execute_query(
@@ -589,7 +589,7 @@ class TextToQuery:
         store_master["operator_name"] = (
             store_master["first_name"] + " " + store_master["last_name"]
         )
-        store_master["mcd_store_name"] = store_master["mcd_store_name"].str.lower()
+        store_master["takeda_store_name"] = store_master["takeda_store_name"].str.lower()
         store_master["operator_name"] = store_master["operator_name"].str.lower()
 
         # TODO: to be implemented based on database connection
@@ -597,15 +597,15 @@ class TextToQuery:
         #     store_id_map = dict(zip(store_master['legacy_id'].astype(str), store_master['id'].astype(str)))
         # else:
         #     store_id_map = dict(zip(store_master['legacy_id'].astype(str), store_master['global_store_id'].astype(str)))
-        # for now replacing legacy_id with mcd_store_id
+        # for now replacing legacy_id with takeda_store_id
         store_id_map = dict(
             zip(
-                store_master["mcd_store_id"].astype(str), store_master["id"].astype(str)
+                store_master["takeda_store_id"].astype(str), store_master["id"].astype(str)
             )
         )  # remove this line after implementing above
 
         store_name_map = dict(
-            zip(store_master["mcd_store_name"], store_master["id"].astype(str))
+            zip(store_master["takeda_store_name"], store_master["id"].astype(str))
         )
         store_operator_map = dict(
             zip(store_master["operator_name"], store_master["id"].astype(str))
@@ -819,10 +819,10 @@ class TextToQuery:
                     self.logger.info("MySql connection is open. Reopening the connection. not nessasary.")
 
             elif isinstance(db_conn, Connection): # Check if the connection object is sqlalchemy type for Athena
-                
+
                 if db_conn.closed:
                     self.logger.info("SQLAlchemy connection is closed. Reopening the connection.")
-                    db_conn = db_conn.engine.connect() 
+                    db_conn = db_conn.engine.connect()
                 else:
                     self.logger.info("SQLAlchemy connection is open Reopening the connection. not nessasary.")
 
@@ -962,7 +962,7 @@ class TextToQuery:
         # self.output_table.to_csv(csv_buffer, index=False)
         # s3_file_path = f"{self.output_path}/01_text_to_query/output_table.csv"
         # s3_client.put_object(
-        #     Bucket="mcd-ipro", Key=s3_file_path, Body=csv_buffer.getvalue()
+        #     Bucket="takeda-ipro", Key=s3_file_path, Body=csv_buffer.getvalue()
         # )
         if cloud_config.cloud_provider != "s3":
             with self._fs.open(
@@ -997,7 +997,7 @@ class TextToQuery:
         # buffer.seek(0)
         # # buffer = BytesIO(self.output_table_dict.encode("utf-8"))
         # s3_client.put_object(
-        #     Bucket="mcd-ipro", Key=file_path_data_dict, Body=buffer.getvalue()
+        #     Bucket="takeda-ipro", Key=file_path_data_dict, Body=buffer.getvalue()
         # )
         # with self._fs.open(
         #     pp.join(self.output_path, "output_data_dictionary.txt"), "w"

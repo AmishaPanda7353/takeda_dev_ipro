@@ -3,7 +3,7 @@ user_config_domains:
     url : "http://ipro-app-service.default.svc.cluster.local:80/"
     # url : "http://127.0.0.1:8000/"
 
-  mcd:
+  takeda:
     ui: True
     skip_api_call: True
 
@@ -19,7 +19,7 @@ user_config_domains:
     connection_params:
       # API type - Can be openai or azure
       # api_type: "aws_claude_3_5" #"aws_claude_3" #"azure" #aws_claude_3
-      api_type: 
+      api_type:
         text_to_query : "aws_claude_3_5" #1
         text_to_query_reattempt : "aws_claude_3_5" #1b
         query_to_chart_type : "aws_claude_3_5" #2a
@@ -29,9 +29,9 @@ user_config_domains:
         summarize_tables : "aws_claude_3_5" #3c
         summarize_insights : "aws_claude_3_5" #3c
         questions_to_insights : "aws_claude_3_5" #3c
-        
+
       # End point of Azure OpenAI resource group
-      api_base: "https://openai-mcd.openai.azure.com/"
+      api_base: "https://openai-takeda.openai.azure.com/"
       # API version. Search for microsoft/ openai docs for getting API version corresponding to the model version that you deployed in the Azure OpenAI resource group
       api_version: "2023-03-15-preview"
 
@@ -77,7 +77,7 @@ user_config_domains:
       recreate_rag_table_flag : True
       qc_vectordb_table_name : "qc_vector_table"
       question_classification_data_path : prod/data/questionnaires/question_classification_templates.csv
-      track0__data_path : prod/data/questionnaires/question_classification_templates.csv 
+      track0__data_path : prod/data/questionnaires/question_classification_templates.csv
       local_check : True
 
     table_selection_parameters:
@@ -95,7 +95,7 @@ user_config_domains:
       embedding_dim: 768
 
     chart_generation_type: 'local' #local #llm
-    
+
 
       # column_selection_method: keep this as a list, if more than one model then it will give union of all the results
       # note: if taking results for combined( column name + column description + table name ), keep this only: ['combined']

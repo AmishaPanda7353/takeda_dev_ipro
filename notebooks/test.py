@@ -1,6 +1,6 @@
 import requests
 
-url = "https://openai-mcd.openai.azure.com//openai/deployments/mcd-insights-pro-4o/chat/completions?api-version=2023-03-15-preview"
+url = "https://openai-takeda.openai.azure.com//openai/deployments/takeda-insights-pro-4o/chat/completions?api-version=2023-03-15-preview"
 headers = {
     "api-key": "1fc6ffcf95594676934236dfb69a2a81",
     "Content-Type": "application/json"

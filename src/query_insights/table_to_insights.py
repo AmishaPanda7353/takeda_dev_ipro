@@ -376,7 +376,7 @@ class TableToInsights:
         else:
             lat_3c = gi.track3c_latency
 
-        if config.user_config_domains.mcd.save_track_output:
+        if config.user_config_domains.takeda.save_track_output:
 
             track_status = {
                 # "question_id": [self.question_id],

@@ -483,7 +483,7 @@ class QueryToChart:
             f"Time taken to run track 2: {round(track2_end_time - track2_start_time, 2)} seconds."
         )
 
-        # if config.cloud_details.mcd.cloud_provider == "s3":
+        # if config.cloud_details.takeda.cloud_provider == "s3":
         #     upload_data(self.data_config.path.exp_name)
 
         if not hasattr(track2_ins, "track2a_latency"):
@@ -496,7 +496,7 @@ class QueryToChart:
         else:
             track2b_latency = track2_ins.track2b_latency
 
-        if config.user_config_domains.mcd.save_track_output:
+        if config.user_config_domains.takeda.save_track_output:
 
             track_status = {
                 # "question_id": [self.question_id],

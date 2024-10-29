@@ -3,35 +3,35 @@ database_details:
   app_database:
     # app_db_name: postgres
     # database_name: nlp_test
-    secret_name : "mcd-insights-pro-staging-credentials"
-    database_name : "mcd-insights-pro-us-qa-app-db" #"app_db" #"mcd-insights-pro-demo"
+    secret_name : "takeda-insights-pro-staging-credentials"
+    database_name : "takeda-insights-pro-us-qa-app-db" #"app_db" #"takeda-insights-pro-demo"
     region_name : "us-east-2"
     # host: supply-chain-db.postgres.database.azure.com
     # port: 5432
     # user: supplyChainDbAdmin@supply-chain-db
 
-  mcd:
+  takeda:
     domain_database: "mysql"
     # db_name: "mysql"
     # db_type: "aws_redshift" #"SQLite"
     #db_file_path:
     reporting_db:
-      database_name : "mcd_us_ds"
+      database_name : "takeda_us_ds"
       region_name : "us-east-2"
-      secret_name : "mcd-aurora-insights-pro-db-temp-us-credentials" # "mcd-insights-pro-temp-db" #<- old schema #"mcd-aurora-insights-pro-db-us-credentials" #<- new schema
+      secret_name : "takeda-aurora-insights-pro-db-temp-us-credentials" # "takeda-insights-pro-temp-db" #<- old schema #"takeda-aurora-insights-pro-db-us-credentials" #<- new schema
     historical_db:
       secret_name: "insights-pro-secrets-us"
       region_name: "us-east-2"
 
 
     # Hostname
-    # host: "mcd-aurora-serverless-db-us.cluster-chnzpuzc0sfd.us-east-2.rds.amazonaws.com"
+    # host: "takeda-aurora-serverless-db-us.cluster-chnzpuzc0sfd.us-east-2.rds.amazonaws.com"
     # #PORT
     # port: 3306
     # # Username
-    # username: "mcd_ds_user"
+    # username: "takeda_ds_user"
     # # Path where the password to db connection is stored (valid when db_params.db_name is mysql)
-    # password_path: "Mcd_2024" #"/mnt/c/Users/chetan.subramani/Downloads/insights_generator/password_db/password.txt"
+    # password_path: "takeda_2024" #"/mnt/c/Users/chetan.subramani/Downloads/insights_generator/password_db/password.txt"
     # Path where the db file for database is stored. Can be created using a notebook in support codes of this project
     sqlite_database_path:
     chunk_size: 500000 #500000
